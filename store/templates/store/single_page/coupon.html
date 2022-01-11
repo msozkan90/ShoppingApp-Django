@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="row row_edit" >
+    {% for product in products%}
+    <div class="col-lg-3 mt-3 urun">
+    
+        <img class="thumbnail" src="{% static product.imageURL %}">
+        <div class="box-element product" >
+            <h6><strong>{{product.name}}</strong></h6>
+            
+           <div class="" data-product="{{product.id}}" id="sıralama">{{product.id}}</div>
+            <hr>
+
+            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart alt_btn" id="add_to_card">Add to Cart</button>
+            
+            <a class="btn btn-outline-success alt_btn" style="left: 130px;" href="/{{product.category.category}}/{{product.category}}/{{product.id}}">View</a> 
+            <h4 class="alt_btn" style="right: 5px;"><strong>${{product.price}}</strong></h4>
+        </div>
+    </div>     
+    {% endfor %}
+</div>
+</body>

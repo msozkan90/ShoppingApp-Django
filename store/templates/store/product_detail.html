@@ -1,0 +1,34 @@
+{% extends "store/main.html" %} {% load static %} {% block content %}
+
+
+<div class="row">
+    <h4><strong>{{cate}}</strong></h4>
+    <hr>
+    <br>
+    <br>
+
+    {% for a,b,c in at3 %}
+
+        <div class="col-lg-4 mb-3 " >
+      <a id="image" href="/{{cate}}/{{category}}/{{c}}"> <img class="thumbnail"  src="{% static b %}"></a>
+      <div class="box-element product" >
+        <a id="baslık" style="text-decoration: none; color: black;" href="/{{cate}}/{{category}}/{{c}}">{{a}}</a>
+          <hr>
+      </div>
+    </div>
+        
+        <br>
+
+        {% endfor %}
+</div>
+
+
+
+
+
+
+
+ 
+<br>
+
+{% endblock %}

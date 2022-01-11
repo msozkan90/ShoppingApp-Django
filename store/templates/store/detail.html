@@ -1,0 +1,28 @@
+{% extends "store/main.html" %} 
+{% load static %} 
+{% block content %}
+
+
+    <h4><strong>{{cate}}</strong></h4>
+    <hr>
+    <br>
+    <div class="col-lg-8" style="margin-left: 250px;" >
+      <img class="thumbnail" id="detail" src="{% static  detail.imageURL %}">
+      <div class="box-element product" >
+          <h6><strong>{{detail.name}}</strong></h6>
+          <h6><strong>{{detail.brand}}</strong></h6>
+          <hr>
+
+          <button data-product="{{detail.id}}" data-action="add" class="btn btn-outline-success add-btn update-cart">Add to Cart</button>
+          <h4 style="display: inline-block; float: right"><strong>${{detail.price}}</strong></h4>
+      </div>
+
+
+<br>
+    
+    
+ 
+
+  </div>
+
+{% endblock %}

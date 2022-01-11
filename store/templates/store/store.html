@@ -1,0 +1,101 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% block content2 %}
+
+<div class="row  row_edit" >
+    <div class=" ">
+        <br>
+        <div class="row " >
+            <div class="col-2 h-75" >
+                <br>
+                <br>
+                <div class="list-group"  id="main_cate_menu">
+                    <a href="page/all" target="content" class="list-group-item" id="main_cate_menu">All</a>
+                    <a href="page/man" target="content" class="list-group-item" id="main_cate_menu">Man</a>
+                    <a href="page/woman" target="content" class="list-group-item" id="main_cate_menu">Woman</a>
+                    <a href="page/child" target="content" class="list-group-item" id="main_cate_menu">Child</a>
+                    <a href="page/home" target="content" class="list-group-item" id="main_cate_menu">Home</a>
+                    <a href="page/electronic" target="content" class="list-group-item" id="main_cate_menu">Electronic</a>
+                    <a href="page/coupon" target="content" class="list-group-item" id="main_cate_menu">Product Coupons</a>
+                    
+                </div>
+            </div>
+          
+            <div class="col-10 h-100">
+                <iframe name="content" frameborder="0" class=" w-100" src="page/all" id="single_page"></iframe>
+            </div>
+        </div>
+    </div>
+
+<!-- 
+    {% if user.is_authenticated %}
+    <strong>Hoşgeldin {{user}}</strong>
+    {% else %}
+    {% endif %}
+    <h1>Categories</h1>
+    <hr>
+
+    {% for mcategory in main_category %}
+    <div class="col-lg-4 mb-3 " >
+    {% comment %} {%url 'store:category' mcategory.name %} {% endcomment %}
+        <a id="image" href="{%url 'store:categoryss' mcategory.name %}"> <img class="thumbnail"  src="{% static  mcategory.imageURL %}"></a> 
+        <div class="box-element product2" >
+            <h6><strong>{{mcategory.name}}</strong></h6>
+            <hr>
+        </div>
+    </div>
+    {% endfor %}
+    <div></div>
+    <br><br><br><br>
+    <h2>New Added</h2>
+    <hr>
+    
+    {% for product in products%}
+    <div class="col-lg-4 mt-3 urun">
+    
+        <img class="thumbnail" src="{% static product.imageURL %}">
+        <div class="box-element product" >
+            <h6><strong>{{product.name}}</strong></h6>
+            
+           <div class="" data-product="{{product.id}}" id="sıralama">{{product.id}}</div>
+            <hr>
+
+            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart alt_btn" id="add_to_card">Add to Cart</button>
+            
+            <a class="btn btn-outline-success alt_btn" style="left: 130px;" href="/{{product.category.category}}/{{product.category}}/{{product.id}}">View</a> 
+            <h4 class="alt_btn" style="right: 5px;"><strong>${{product.price}}</strong></h4>
+        </div>
+    </div>     
+    {% endfor %}
+    
+</div> -->
+<script > 
+
+    // var sıralama = document.querySelectorAll("#sıralama");
+    // const urunler =document.querySelectorAll(".urun");
+    // //var sıra_Id = sıralama.dataset.product;
+    
+    // function deneme(){
+    // for (i = 0; i < sıralama.length; i++) {
+    //     let id=sıralama[i].dataset.product
+    //     if ( (sıralama.length - id)>= 6){
+
+    //         console.log((sıralama.length - id))
+    //             urunler[id].classList.add("hidden");
+    
+    //     }
+        
+    //     //console.log(sıralama[i].attributes[1])
+
+          
+        
+        
+    // }
+    // }
+      
+    // deneme();  
+            
+    
+    </script>
+
+{% endblock  %}

@@ -1,0 +1,17 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% block content %}
+<div class="register">
+    
+    <form action="{%url 'store:login' %}"  method="post" class="register  w-50 " id="form-control" style="height: 270px;">  
+        <div href=""class="bg-warning w-100 "> <strong>Login Form</strong> </div> 
+        <div class="col-lg-6 r_form">
+        {% csrf_token %}
+        {{form}}
+        <br>
+        <button class="btn btn-danger"  id="r-button"  type="submit">Login</button>
+        </div>
+        
+    </form>
+</div>
+{% endblock  %}

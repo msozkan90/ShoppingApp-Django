@@ -1,0 +1,144 @@
+{% extends "store/main.html" %} 
+{% load static %} 
+{% block content %}
+
+<div id="list-wrapper">
+			
+</div>	
+
+	<script type="text/javascript"> 
+
+
+		var activeItem = null
+		var list_snapshot = []
+
+		buildList()
+
+		function buildList(){
+			var wrapper = document.getElementById('list-wrapper')
+			//wrapper.innerHTML = ''
+
+
+			
+			var url = 'http://localhost:8000/api/product-list/'
+
+			fetch(url)
+			.then((resp) => resp.json())
+			.then(function(data){
+				console.log('Data:', data)
+			// })}
+				var list = data
+				for (var i in list){
+
+
+			
+					
+
+					var title = `<span class="title">${list[i].name}</span>`
+					var title1 = `<span class="title">${list[i].category}</span>`
+					var title2 = `<span class="title">${list[i].price}</span>`
+					var title3 = `<span class="title">${list[i].brand}</span>`
+					var title4 = `<span class="title">${list[i].digital}</span>`
+					if (list[i].completed == true){
+						title = `<strike class="title">${list[i].name}</strike>`
+						title1 = `<strike class="title">${list[i].category}</strike>`
+						title2 = `<strike class="title">${list[i].price}</strike>`
+						title3 = `<strike class="title">${list[i].brand}</strike>`
+						title4 = `<strike class="title">${list[i].digital}</strike>`
+					}
+
+					var item = `
+						<div id="data-row-${i}" class="task-wrapper flex-wrapper">
+							<div style="flex:3">
+								${title}
+							</div>
+							<div style="flex:2">
+								${title1}
+							</div>
+							<div style="flex:2">
+								${title2}
+							</div>
+							<div style="flex:2">
+								${title3}
+							</div>
+							<div style="flex:2">
+								${title4}
+							</div>
+							<div style="flex:1">
+								<button class="btn btn-sm btn-outline-info edit">Edit </button>
+							</div>
+							<div style="flex:1">
+								<button class="btn btn-sm btn-outline-dark delete">-</button>
+							</div>
+						</div>
+
+					`
+					wrapper.innerHTML += item
+	
+				}
+
+				// if (list_snapshot.length > list.length){
+				// 	for (var i = list.length; i < list_snapshot.length; i++){
+				// 		document.getElementById(`data-row-${i}`).remove()
+				// 	}
+				// }
+
+				list_snapshot = list
+
+
+				for (var i in list){
+					var editBtn = document.getElementsByClassName('edit')[i]
+					var deleteBtn = document.getElementsByClassName('delete')[i]
+					var title = document.getElementsByClassName('title')[i]
+
+
+
+
+
+
+				}
+
+
+			})
+		}
+
+
+		var form = document.getElementById('form-control')
+
+
+
+
+		// function deleteItem(item){
+		// 	console.log('Delete clicked')
+		// 	fetch(`http://127.0.0.1:8000/api/task-delete/${item.id}/`, {
+		// 		method:'DELETE', 
+		// 		headers:{
+		// 			'Content-type':'application/json',
+		// 			'X-CSRFToken':csrftoken,
+		// 		}
+		// 	}).then((response) => {
+		// 		buildList()
+		// 	})
+		// }
+
+		// function strikeUnstrike(item){
+		// 	console.log('Strike clicked')
+
+		// 	item.completed = !item.completed
+		// 	fetch(`http://127.0.0.1:8000/api/task-update/${item.id}/`, {
+		// 		method:'POST', 
+		// 		headers:{
+		// 			'Content-type':'application/json',
+		// 			'X-CSRFToken':csrftoken,
+		// 		},
+		// 		body:JSON.stringify({'title':item.title, 'completed':item.completed})
+		// 	}).then((response) => {
+		// 		buildList()
+		// })	
+		
+	
+	
+	</script> 
+
+
+{% endblock %}

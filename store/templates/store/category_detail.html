@@ -1,0 +1,24 @@
+{% extends "store/main.html" %} {% load static %} {% block content %}
+
+<div class="col-lg-6  cat_det">
+
+  <div class="box-element product3">
+    {% for categ in category %}
+    <h4 class=" text-center"><strong >{{categ}}</strong></h4>
+    {% endfor %}
+    <hr>
+    <br>
+    <br>
+    {% for pro in products %} 
+    <a class="cat_a" href="/{{cate}}/{{pro.name}}"><div class="alert alert-warning "> {{pro}}</div></a> 
+    <br>
+    {% endfor %}
+<br>
+    
+    
+ 
+
+  </div>
+</div>
+
+{% endblock %}
