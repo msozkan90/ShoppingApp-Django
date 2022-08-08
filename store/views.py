@@ -111,12 +111,14 @@ def addProduct(request):
 	order= data['order']	
 	form = ProductForm()
 	if request.method == 'POST':
-		form = ProductForm(request.POST)
+		form = ProductForm(request.POST, request.FILES)
+		print(form.errors)
 		if form.is_valid:
+	
 			product = form.save(commit=False)
 			product.save()
-			messages.success(request,"You are registered successfully")
-			context={"items":items ,"order":order,"cartItems":cartItems,"form":form,"product":product}
+			messages.success(request,"You are add product successfully")
+			context={"form":form,"product":product}
 			return redirect("store:store")
 
 	context={"items":items ,"order":order,"cartItems":cartItems,"form":form}
@@ -127,11 +129,9 @@ def updateItem(request):
 	action = data['action']
 	print('Action:', action)
 	print('Product:', productId)
-
 	customer = request.user.customer
 	product = Product.objects.get(id=productId)
 	order, created = Order.objects.get_or_create(customer=customer, complete=False)
-
 	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
 	if action == 'add':
@@ -147,44 +147,11 @@ def updateItem(request):
 	return JsonResponse('Item was added', safe=False)
 
 
-# def updateItem(request):
-# 	if (request.method =='POST'):
-# 		elma="elma"
-# 		print("burdayımmmmm")
-# 	return elma
-	# data = json.loads(request.body)
-	# productId = data['productId']
-	# action = data['action']
-	# print('Action:', action)
-	# print('Product:', productId)
 
-	# customer = request.user.customer
-	# #products=Product.objects.all()
-	# #category=MainCategory.objects.get(name=products.category)
-	# product = Product.objects.get(id=productId)
-	# order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
-	# orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
-	# if action == 'add':
-	# 	orderItem.quantity = (orderItem.quantity + 1)
-	# elif action == 'remove':
-	# 	orderItem.quantity = (orderItem.quantity - 1)
-
-	# orderItem.save()
-
-	# if orderItem.quantity <= 0:
-	# 	orderItem.delete()
-	
-	#return JsonResponse('Item was added', safe=False)
 
 def sign_in(request):
 	form=AuthenticationForm()
-	#data = cartData(request)
-	#cartItems=data['cartItems']
-	# if request.user.is_authenticated:
-	# 	return redirect('store:store')
-	# else:
 	if request.method == 'POST':
 		username = request.POST.get('username')
 		password =request.POST.get('password')
@@ -233,7 +200,6 @@ def categoryss(request,name):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	category=MainCategory.objects.filter(name=name)
 	categoryy=list(category)
 	m=0
@@ -255,16 +221,12 @@ def product(request,name,category):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#categoryy=get_object_or_404(MainCategory,name=name)
 	categoryy=MainCategory.objects.filter(name=name)
 	categoryy=list(categoryy)
 	for i in categoryy:
 		print(i)
 		cate=i
-
-	#cate=cate_name
 	product=Product.objects.all()
-	
 	a=0
 	b=-1
 	liste2=[]
@@ -390,7 +352,6 @@ def man(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -407,7 +368,6 @@ def woman(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -424,7 +384,6 @@ def child(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -441,7 +400,6 @@ def home(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -458,7 +416,6 @@ def electronic(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -475,7 +432,6 @@ def coupon(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	product=Product.objects.all()
 	products=[]
 	for i in product:
@@ -492,7 +448,6 @@ def all(request):
 	cartItems=data['cartItems']
 	items= data['items']
 	order= data['order']
-	#category=get_object_or_404(MainCategory,name=name)
 	products=Product.objects.all()
 
 	

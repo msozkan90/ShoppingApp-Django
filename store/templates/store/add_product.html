@@ -5,7 +5,7 @@
   <div class="register">
         
         
-      <form action="{%url 'store:addProduct' %}" method="post" id="form-control"> 
+      <form action="{%url 'store:addProduct' %}" method="post" id="form-control"  enctype="multipart/form-data"> 
         {% csrf_token %}
         <div href=""class="bg-warning w-100 " > <strong>Product Form</strong> </div> 
         <label for="html">Category</label><br>
@@ -24,7 +24,10 @@
         <div class="product_form">{{form.digital}}</div>
         <br>
         <label for="html">Image</label><br>
-        <div class="product_form pro_ozel">{{form.image}}</div>
+        <div class="product_form pro_ozel">
+
+        <input type="file" id="image" required name="image" >
+      </div>
         <br>
         <button class="btn btn-danger " id="r-button">Submit</button>
   

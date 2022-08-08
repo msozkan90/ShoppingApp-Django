@@ -56,7 +56,7 @@
         console.log('Cart Created!', cart)
         document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
       }
-     // console.log('Cart:', cart)
+  
       
       </script>
 </head>
@@ -66,7 +66,7 @@
     {% for product in products%}
     <div class="col-lg-3 mt-3 urun">
     
-        <img class="thumbnail" src="{% static product.imageURL %}">
+        <img class="thumbnail" src="{% static product.image %}">
         <div class="box-element product" >
             <h6><strong>{{product.name}}</strong></h6>
             
@@ -82,7 +82,7 @@
     {% endfor %}
 </div>
     <script type="text/javascript" src="{% static 'js/yeni.js' %}"></script>
-   <script type="text/javascript" src="{% static 'js/cart(2).js' %}"></script>
+
     
    
 
